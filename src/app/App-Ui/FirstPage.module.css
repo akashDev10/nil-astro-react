@@ -1,0 +1,20 @@
+.imgs {
+    margin: 30px 0;
+    height: 200px; 
+    width: 400px;
+  }
+
+ .p {
+
+     color: rgb(86, 90, 86);
+ } 
+
+ .box {
+  float: right;
+  width: 60%;
+
+}
+
+.h3 {
+  color: rgb(86, 90, 86);
+}

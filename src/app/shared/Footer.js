@@ -1,0 +1,16 @@
+import React, { Component } from 'react';
+
+class Footer extends Component {
+  render () {
+    return (
+      <footer className="footer">
+        <div className="d-sm-flex justify-content-center justify-content-sm-between py-2">
+          <span className="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.akashchakraborty.com" target="_blank" rel="noopener noreferrer">akashDev.com </a>2021</span>
+          <span className="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="https://www.akashchakraborty.com/react-admin-templates/" target="_blank" rel="noopener noreferrer"> react admin </a> templates by Akash Chakraborty from akashDev.com </span>
+        </div>
+      </footer> 
+    );
+  }
+}
+
+export default Footer;
