@@ -55,7 +55,7 @@ const Navbar = () => {
                     <i className="mdi mdi-cached mr-2 text-success"></i>
                     <Trans>Activity Log</Trans>
                   </Dropdown.Item>
-                  <Dropdown.Item href="!#" onClick={evt =>evt.preventDefault()}>
+                  <Dropdown.Item href="!#" onClick={evt =>authCtx.logout()}>
                     <i className="mdi mdi-logout mr-2 text-primary"></i>
                     <Trans>Signout</Trans>
                   </Dropdown.Item>
@@ -168,7 +168,7 @@ const Navbar = () => {
               </Dropdown>
             </li>
             <li className="nav-item nav-logout d-none d-lg-block">
-              <a className="nav-link" href="!#" onClick={event => event.preventDefault()}>
+              <a className="nav-link" href="!#" onClick={event => authCtx.logout()}>
                 <i className="mdi mdi-power"></i>
               </a>
             </li>
