@@ -1,37 +1,37 @@
 import React , {useState} from 'react';
-import AddHouseDeatils from './AddHouseDeatils';
-import EditHouseDetails from './EditHouseDetails';
+import AddPlanetDetails from './AddPlanetDetails';
+import EditPlanetDetails from './EditPlanetDetails';
 import { Alert } from 'react-bootstrap';
 
 
 
 
-const HouseDetailsInput = (props) => {
+const PlanetDetailsInput = () => {
 
 
     const [modalShow, setModalShow] = useState(false);
 
-    const [HouseDeatils, setHouseDetails] = useState([]);
+    const [PlanetDeatils, setPlanetDetails] = useState([]);
 
     const [isChickEdit, setIsChickEdit] = useState(false);
 
-    const [editArraysHouseDetails, setEditArraysHouseDetails] = useState({});
+    const [editArraysPlanetDetails, setEditArraysPlanetDetails] = useState({});
 
-        const InputArraysHouseDetailsAdd = (data) => {
-                setHouseDetails([data, ...HouseDeatils]);
+        const InputArraysPlanetDetailsAdd = (data) => {
+                setPlanetDetails([data, ...PlanetDeatils]);
         };
 
 
-        const InputArraysHouseDetailsEdit = (data) => {
-          setHouseDetails(
-            HouseDeatils.map((houseData) => {
-              if(houseData.house === data.house){
-                houseData.lowLatitude=data.lowLatitude;
-                houseData.lowSphoot=data.lowSphoot;
-                houseData.highLatitude=data.highLatitude;
-                houseData.highSphoot=data.highSphoot;
+        const InputArraysPlanetDetailsEdit = (data) => {
+          setPlanetDetails(
+            PlanetDeatils.map((planetData) => {
+              if(planetData.planet === data.planet){
+                planetData.lowDate=data.lowDate;
+                planetData.lowSphoot=data.lowSphoot;
+                planetData.highDate=data.highDate;
+                planetData.highSphoot=data.highSphoot;
               }
-                  return houseData;
+                  return planetData;
             })
           )
 
@@ -46,7 +46,7 @@ const HouseDetailsInput = (props) => {
             <Alert variant="success">
             <Alert.Heading>Welcome to second Stage</Alert.Heading>
             <p>
-            please enter house details to proceed
+            please enter planet details to proceed
             </p>
             <hr />
                 <p className="mb-0">
@@ -57,39 +57,51 @@ const HouseDetailsInput = (props) => {
 
         }
 
-        const onSubmitHouseDetails = () => {
+        const onSubmitPlanetDetails = () => {
 
-          console.log("On submit click House details->>",JSON.stringify(HouseDeatils));
+          console.log("On submit click planet details->>",JSON.stringify(PlanetDeatils));
 
-         const response = fetch("http://localhost:8080/api/save-house-details",{
+         const response = fetch("http://localhost:8080/api/save-planet-details",{
             method: 'POST',
-            body: JSON.stringify(HouseDeatils),
+            body: JSON.stringify(PlanetDeatils),
             headers: {'Content-Type': 'application/json'}
 
           })
 
           console.log(response);
-          props.history.push('/horary-calculation/PlanetDetailsInput')
+
+          const getResponse = fetch("http://localhost:8080/api/result-page",{
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+
+          })
+
+          console.log(getResponse);
+
+         
+          
+
+
 
         }
 
 
-        const handleRemoveItem = house => {
-            //console.log("delete data-->",houseNo)
-            setHouseDetails(HouseDeatils.filter(item => item.house !== house))
+        const handleRemoveItem = planet => {
+            //console.log("delete data-->",PlanetNo)
+            setPlanetDetails(PlanetDeatils.filter(item => item.planet !== planet))
         }
 
         const handleResetItem = () => {
-          setHouseDetails([]);
+          setPlanetDetails([]);
         }
 
-        const handleEditItem = house => {
+        const handleEditItem = planet => {
             setIsChickEdit(true);
-            console.log("edit house no ",house);
-         const arr =  HouseDeatils.filter(item => item.house === house)
-         console.log("edit house no ",arr);
+            console.log("edit Planet no ",planet);
+         const arr =  PlanetDeatils.filter(item => item.planet === planet)
+         console.log("edit Planet no ",arr);
          setModalShow(true)
-         setEditArraysHouseDetails(arr[0])
+         setEditArraysPlanetDetails(arr[0])
 
         }
     
@@ -102,8 +114,8 @@ const HouseDetailsInput = (props) => {
         <div className="col-lg-12 grid-margin stretch-card">
             <div className="card">
               <div className="card-body">
-                <h4 className="card-title">House Details</h4>
-                <p className="card-description"> Please Enter House Details
+                <h4 className="card-title">Planet Details</h4>
+                <p className="card-description"> Please Enter Planet Details
                 </p>
                 <button type="button" className="btn btn-gradient-success btn-icon-text" variant="primary" onClick={() => setModalShow(true) && setIsChickEdit(false)}>
                         <i className="mdi mdi-note-plus btn-icon-prepend"></i>                                                    
@@ -112,51 +124,51 @@ const HouseDetailsInput = (props) => {
                       <button type="button" className="btn btn-inverse-primary btn-rounded btn-icon pull-right" onClick={() => handleResetItem()} >
                         <i className="mdi mdi-reload btn-icon-prepend"></i>
                       </button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                     {!isChickEdit && <AddHouseDeatils
+                     {!isChickEdit && <AddPlanetDetails
                         show={modalShow}
                         onHide={() => setModalShow(false)}                                                                                                                                                          
-                        puton={InputArraysHouseDetailsAdd}
+                        puton={InputArraysPlanetDetailsAdd}
                         /> }
 
-                       {isChickEdit && <EditHouseDetails
+                       {isChickEdit && <EditPlanetDetails
                         show={modalShow}
                         onHide={() => setModalShow(false)}                                                                                                                                                          
-                        puton={InputArraysHouseDetailsEdit}
-                        editvalue={editArraysHouseDetails}
+                        puton={InputArraysPlanetDetailsEdit}
+                        editvalue={editArraysPlanetDetails}
 
                         /> }                                                                                                                                              
                         <hr/>
-                        {HouseDeatils.length === 0 && <NoData/>}
-                        {HouseDeatils.length > 0 &&
+                        {PlanetDeatils.length === 0 && <NoData/>}
+                        {PlanetDeatils.length > 0 &&
                 <div className="table-responsive">
-                    <form className="forms-sample" onSubmit={onSubmitHouseDetails}>
+                    <form className="forms-sample" onSubmit={onSubmitPlanetDetails}>
                   <table className="table table-striped">
                     <thead>
                       <tr>
-                      <th>House No</th>
+                      <th>Planet</th>
                         <th>Lower Latitude</th>
-                        <th>Lower Longitude Of House</th>
+                        <th>Lower Longitude Of Planet</th>
                         <th>Higher Latitude</th>
-                        <th>Higher Longitude Of House</th>
+                        <th>Higher Longitude Of Planet</th>
                         <th>EDIT/DELETE</th>
                       </tr>
                     </thead>
                     <tbody>
-                    {console.log("whatssss up",HouseDeatils)}
-                        {HouseDeatils.map(input => 
+                    {console.log("whatssss up",PlanetDeatils)}
+                        {PlanetDeatils.map(input => 
                                
-                            <tr key={input.house}>
-                            <td >{input.house}</td>
-                            <td> {input.lowLatitude}</td>
+                            <tr key={input.planet}>
+                            <td >{input.planet}</td>
+                            <td> {input.lowDate}</td>
                             <td>{input.lowSphoot}</td>
-                            <td> {input.highLatitude}</td>
+                            <td> {input.highDate}</td>
                             <td> {input.highSphoot} </td>
                             <td> 
-                            <button type="button" onClick={() =>handleEditItem(input.house)} className="btn btn-gradient-dark btn-icon-text">
+                            <button type="button" onClick={() =>handleEditItem(input.planet)} className="btn btn-gradient-dark btn-icon-text">
                                     Edit
                              <i className="mdi mdi-file-check btn-icon-append"></i>                          
                              </button>
-                             <button type="button" onClick={() =>handleRemoveItem(input.house)} className="btn btn-gradient-danger btn-icon-text">
+                             <button type="button" onClick={() =>handleRemoveItem(input.planet)} className="btn btn-gradient-danger btn-icon-text">
                                 <i className="mdi mdi-delete-forever btn-icon-prepend"></i>                                                    
                                     Delete
                                 </button>
@@ -179,4 +191,4 @@ const HouseDetailsInput = (props) => {
 
 };
 
-export default HouseDetailsInput;
+export default PlanetDetailsInput;

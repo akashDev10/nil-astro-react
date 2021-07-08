@@ -35,6 +35,7 @@ class Sidebar extends Component {
     const dropdownPaths = [
       {path:'/apps', state: 'appsMenuOpen'},
       {path:'/basic-ui', state: 'basicUiMenuOpen'},
+      {path:'/horary-calculation', state: 'horaryCalculationMenuOpen'},
       {path:'/advanced-ui', state: 'advancedUiMenuOpen'},
       {path:'/form-elements', state: 'formElementsMenuOpen'},
       {path:'/tables', state: 'tablesMenuOpen'},
@@ -78,6 +79,22 @@ class Sidebar extends Component {
               <i className="mdi mdi-home menu-icon"></i>
             </Link>
           </li>
+          <li className={ this.isPathActive('/horary-calculation') ? 'nav-item active' : 'nav-item' }>
+            <div className={ this.state.horaryCalculationMenuOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ () => this.toggleMenuState('horaryCalculationMenuOpen') } data-toggle="collapse">
+              <span className="menu-title"><Trans>Horary Chart Calculation</Trans></span>
+              <i className="menu-arrow"></i>
+              <i className="mdi mdi-brightness-7 menu-icon"></i>
+            </div>
+            <Collapse in={ this.state.horaryCalculationMenuOpen }>
+              <ul className="nav flex-column sub-menu">
+                <li className="nav-item"> <Link className={ this.isPathActive('/horary-calculation/interactive') ? 'nav-link active' : 'nav-link' } to="/horary-calculation/interactive"><Trans>Interactive</Trans></Link></li>
+                <li className="nav-item"> <Link className={ this.isPathActive('/horary-calculation/HouseDetailsInput') ? 'nav-link active' : 'nav-link' } to="/horary-calculation/HouseDetailsInput"><Trans>HouseDetailsInput</Trans></Link></li>
+                <li className="nav-item"> <Link className={ this.isPathActive('/horary-calculation/PlanetDetailsInput') ? 'nav-link active' : 'nav-link' } to="/horary-calculation/PlanetDetailsInput"><Trans>PlanetDetailsInput</Trans></Link></li>
+                <li className="nav-item"> <Link className={ this.isPathActive('/horary-calculation/HoraryChartCalculationFile') ? 'nav-link active' : 'nav-link' } to="/horary-calculation/HoraryChartCalculationFile"><Trans>Horary Chart File</Trans></Link></li>
+              </ul>
+            </Collapse>
+          </li>
+
           <li className={ this.isPathActive('/basic-ui') ? 'nav-item active' : 'nav-item' }>
             <div className={ this.state.basicUiMenuOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ () => this.toggleMenuState('basicUiMenuOpen') } data-toggle="collapse">
               <span className="menu-title"><Trans>Basic UI Elements</Trans></span>
@@ -92,6 +109,8 @@ class Sidebar extends Component {
               </ul>
             </Collapse>
           </li>
+
+
           <li className={ this.isPathActive('/form-elements') ? 'nav-item active' : 'nav-item' }>
             <div className={ this.state.formElementsMenuOpen ? 'nav-link menu-expanded' : 'nav-link' } onClick={ () => this.toggleMenuState('formElementsMenuOpen') } data-toggle="collapse">
               <span className="menu-title"><Trans>Form Elements</Trans></span>

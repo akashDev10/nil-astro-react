@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './app/App';
+import { AuthContextProvider } from './app/store/auth-context';
 import "./i18n";
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <BrowserRouter basename="/demo/purple-react-free/template/demo_1/preview">
+  <AuthContextProvider>
+  <BrowserRouter basename="/nil-astro/">
     <App />
   </BrowserRouter>
+  </AuthContextProvider>
 , document.getElementById('root'));
 
 serviceWorker.unregister();

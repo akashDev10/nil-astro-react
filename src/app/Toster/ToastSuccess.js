@@ -3,9 +3,10 @@ import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ToastDemo = () => {
+const ToastSuccess = (props) => {
 
-  toast.success('🦄 Wow so easy!', {
+
+  toast.success(props.msg, {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -15,11 +16,12 @@ const ToastDemo = () => {
     progress: undefined,
     });
 
+
   return (
-      <ToastContainer />
+      <ToastContainer/>
     );
 }
 
 
 
-export default ToastDemo
+export default ToastSuccess;

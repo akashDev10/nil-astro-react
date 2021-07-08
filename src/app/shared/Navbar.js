@@ -1,16 +1,22 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { Dropdown } from 'react-bootstrap';
+import AuthContext from '../store/auth-context';
 import { Link } from 'react-router-dom';
 import { Trans } from 'react-i18next';
 
-class Navbar extends Component {
-  toggleOffcanvas() {
+const Navbar = () => {
+
+  const authCtx = useContext(AuthContext);
+
+  const username = authCtx.username;
+
+  const toggleOffcanvas = () =>  {
     document.querySelector('.sidebar-offcanvas').classList.toggle('active');
   }
-  toggleRightSidebar() {
+  const toggleRightSidebar = () =>  {
     document.querySelector('.right-sidebar').classList.toggle('open');
   }
-  render () {
+
     return (
       <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -40,7 +46,7 @@ class Navbar extends Component {
                     <span className="availability-status online"></span>
                   </div>
                   <div className="nav-profile-text">
-                    <p className="mb-1 text-black"><Trans>David Greymaax</Trans></p>
+                    <p className="mb-1 text-black"><Trans>{username}</Trans></p>
                   </div>
                 </Dropdown.Toggle>
 
@@ -167,18 +173,18 @@ class Navbar extends Component {
               </a>
             </li>
             <li className="nav-item nav-settings d-none d-lg-block">
-              <button type="button" className="nav-link border-0" onClick={this.toggleRightSidebar} >
+              <button type="button" className="nav-link border-0" onClick={toggleRightSidebar} >
                 <i className="mdi mdi-format-line-spacing"></i>
               </button>
             </li>
           </ul>
-          <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" onClick={this.toggleOffcanvas}>
+          <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" onClick={toggleOffcanvas}>
             <span className="mdi mdi-menu"></span>
           </button>
         </div>
       </nav>
     );
   }
-}
+
 
 export default Navbar;

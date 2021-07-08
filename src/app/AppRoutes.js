@@ -35,6 +35,10 @@ const BlankPage = lazy(() => import('./general-pages/BlankPage'));
 const FirstPage = lazy(() => import('./App-Ui/FirstPage'));
 const HoraryChartCalculationInterActiveUi = lazy(() => import('./App-Ui/HoraryChartCalculationInterActiveUi'));
 const HouseDetailsInput = lazy(() => import('./App-Ui/HouseDetailsInput'));
+const PlanetDetailsInput = lazy(() => import('./App-Ui/PlanetDetailsInput'));
+const HoraryChartCalculationFile = lazy(() => import('./App-Ui/HoraryChartCalculationFile'));
+
+
 
 
 
@@ -74,8 +78,14 @@ class AppRoutes extends Component {
 
           <Route path="/general-pages/home" component={ FirstPage } />
 
-          <Route path="/general-pages/interactive" component={ HoraryChartCalculationInterActiveUi } />
-          <Route path="/general-pages/HouseDetailsInput" component={ HouseDetailsInput } />
+          <Route path="/horary-calculation/interactive" component={ HoraryChartCalculationInterActiveUi } />
+          <Route path="/horary-calculation/HouseDetailsInput" component={ HouseDetailsInput } />
+          <Route path="/horary-calculation/PlanetDetailsInput" component={ PlanetDetailsInput } />
+
+          <Route path="/horary-calculation/HoraryChartCalculationFile" component={ HoraryChartCalculationFile } />
+
+
+          
 
 
           <Redirect to="/dashboard" />
